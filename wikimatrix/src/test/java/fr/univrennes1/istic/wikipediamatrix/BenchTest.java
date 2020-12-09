@@ -5,8 +5,15 @@ import static org.junit.Assert.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.junit.Test;
+
+import bean.Table;
 
 public class BenchTest {
 	
@@ -30,30 +37,39 @@ public class BenchTest {
 		File file = new File("inputdata" + File.separator + "wikiurls.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 	    String url;
+	   
+	    
 	    int nurl = 0;
-	    while ((url = br.readLine()) != null) {
+	    boolean b = true;
+	    while ((url = br.readLine()) != null && b) {
 	       String wurl = BASE_WIKIPEDIA_URL + url; 
 	       System.out.println("Wikipedia url: " + wurl);
-	       // TODO: do something with the Wikipedia URL 
-	       // (ie extract relevant tables for correct URL, with the two extractors)
-		    
 	       
-	       // for exporting to CSV files, we will use mkCSVFileName 
-	       // example: for https://en.wikipedia.org/wiki/Comparison_of_operating_system_kernels
-	       // the *first* extracted table will be exported to a CSV file called 
-	       // "Comparison_of_operating_system_kernels-1.csv"
-	       String csvFileName = mkCSVFileName(url, 1);
-	       System.out.println("CSV file name: " + csvFileName);
-	       // the *second* (if any) will be exported to a CSV file called
-	       // "Comparison_of_operating_system_kernels-2.csv"
+	       WikipediaHTMLExtractor wiki = new WikipediaHTMLExtractor(BASE_WIKIPEDIA_URL,
+					outputDirHtml,outputDirWikitext);
+	       if (testGetDocument(wiki, url)) {
+	    	   try {
+		    	   List<Table> listTable = wiki.ExtractUrlToCsv(url);
+		    	   for (int i = 0; i < listTable.size(); i++) {
+		    		   if (! testExtraction(wiki, listTable.get(i), url, i+1)) {
+		    			   int j = i+1;
+		    			   System.out.println("Le tableau " + j + " n'a pas réussi le test d'extraction");
+		    			   b = false;
+		    		   }
+		    			   
+		    	   }
+		       }
+		       catch (Exception e) {
+		    	   
+		    	   System.out.println(e.getMessage() + url);
+		       }
+	       }
+	       else System.out.println("GetDocument falled");
+	       
+	       
+	       
+	       
 
-	       
-	       // TODO: the HTML extractor should save CSV files into output/HTML
-	       // see outputDirHtml 
-	       
-	       // TODO: the Wikitext extractor should save CSV files into output/wikitext
-	       // see outputDirWikitext      
-	       
 	       nurl++;	       
 	    }
 	    
@@ -64,6 +80,25 @@ public class BenchTest {
 
 
 	}
+	 
+	private Boolean testGetDocument(WikipediaHTMLExtractor wiki, String url) {
+		try {
+			Document doc = wiki.getDocument(url);
+			return true;	
+		}
+		catch (Exception e) {
+			return false;
+		}
+		
+		
+	}
+	 
+	private Boolean testExtraction(WikipediaHTMLExtractor wiki, Table table, String url,int n) throws Exception {
+		String csvName = mkCSVFileName(url,n);
+		Table tableOut = wiki.readerCsv(csvName);
+		return table.equals(tableOut);
+	}
+	
 
 	private String mkCSVFileName(String url, int n) {
 		return url.trim() + "-" + n + ".csv";
