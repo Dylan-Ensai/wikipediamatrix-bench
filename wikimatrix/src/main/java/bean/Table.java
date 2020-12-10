@@ -59,6 +59,7 @@ public class Table {
 					if (! a[j].equals(b[j]) ) {
 						System.out.println(a[j]);
 						System.out.println(b[j]);
+						System.out.println("Ligne" + i + "colonne "+ j );
 						return false;
 						
 					}	

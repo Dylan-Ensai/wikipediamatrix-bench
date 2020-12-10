@@ -75,6 +75,7 @@ public class BenchTest {
 	    
 	    br.close();	    
 	    assertEquals(nurl, 336);
+	    System.out.println("Test validé");
 	    
 
 

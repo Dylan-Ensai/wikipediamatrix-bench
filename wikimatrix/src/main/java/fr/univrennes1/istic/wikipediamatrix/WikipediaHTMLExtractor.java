@@ -12,6 +12,8 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
 import com.opencsv.CSVWriterBuilder;
 import com.opencsv.ICSVWriter;
+import com.opencsv.RFC4180Parser;
+import com.opencsv.RFC4180ParserBuilder;
 
 import bean.Table;
 
@@ -140,20 +142,27 @@ public class WikipediaHTMLExtractor {
 		try {
 			Reader reader = Files.newBufferedReader(Paths.get(outputDirWikitext + csvName));
 			
+			// Il y a un problème avec ce parser qui saute les backslashes
 			CSVParser parser = new CSVParserBuilder()
 				    .withSeparator(';')
 				    .withIgnoreQuotations(false)
 				    .build();
 			
+			
+			RFC4180Parser rfc4180Parser = new RFC4180ParserBuilder()
+					.withSeparator(';')
+					.build();
+			
 			CSVReader csvReader = new CSVReaderBuilder(reader)
 				    .withSkipLines(0)
-				    .withCSVParser(parser)
+				    .withCSVParser(rfc4180Parser)
 				    .build();
 			
 			
 			String[] line = csvReader.readNext();
 			tableau.setHeader(line);
 			
+
 			while ((line = csvReader.readNext()) != null) {
 		        tableau.addLine(line);
 		    }
@@ -198,20 +207,26 @@ public class WikipediaHTMLExtractor {
 		WikipediaHTMLExtractor wiki = new WikipediaHTMLExtractor(BASE_WIKIPEDIA_URL,
 				outputDirHtml,outputDirWikitext);
 		
-		String url = "Comparison_of_Java_and_C++";
+		String url = "Comparison_of_programming_languages_(string_functions)";
 		
 		// List<Table> listTable = wiki.ExtractUrlToCsv(url);
 	
-		Document doc = wiki.getDocument(url);
+		/* Document doc = wiki.getDocument(url);
 		Elements tables = doc.select("table");
 		
-		Element table = tables.get(2);
-		System.out.println(tables.size());
+		Element table = tables.get(5);
+		
 		Table tableau = wiki.getTable(table);
 		
 		System.out.println(tableau);
+		*/
 		
-			
+		Table tableOut = wiki.readerCsv(wiki.mkCSVFileName(url,6));
+		String[] line = tableOut.getLine(6);
+		
+		for (int i=0; i<line.length; i++) {
+			System.out.println(line[i]);
+		}
 	}
 			
 		
