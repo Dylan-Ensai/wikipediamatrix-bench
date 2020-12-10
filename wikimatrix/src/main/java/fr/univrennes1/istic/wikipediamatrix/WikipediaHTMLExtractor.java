@@ -70,13 +70,7 @@ public class WikipediaHTMLExtractor {
         		Elements cellules = tr.select("th,td");
         		List<String> line = new ArrayList<String>();
         		for (Element td : cellules) {
-        			
         			String text = td.text();
-        			if (text.contains(";")) {
-        				
-        				// text = "\"" + text + "\"";
-        				text = text.replace(";",":");
-        			}
         			line.add(text);
                 }
         		tableau.addLine(line.toArray(new String[0]));
@@ -100,11 +94,11 @@ public class WikipediaHTMLExtractor {
 	
 	public Boolean ContainSpan(Element table) {
 		for(Element td : table.select("td")) {
-			if (td.hasAttr("colspan"))
+			if (td.hasAttr("colspan") || td.hasAttr("rowspan") )
 				return true;
 		}
 		for(Element tr : table.select("tr")) {
-			if (tr.hasAttr("rowspan"))
+			if (tr.hasAttr("rowspan") || tr.hasAttr("colspan"))
 				return true;
 		}
 		return false;
@@ -119,7 +113,7 @@ public class WikipediaHTMLExtractor {
 			
 			ICSVWriter csvWriter = new CSVWriterBuilder(writer)
 		            .withSeparator(';')
-		            .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
+		            // .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
 		            .withEscapeChar(CSVWriter.DEFAULT_ESCAPE_CHARACTER)
 		            .withLineEnd(CSVWriter.DEFAULT_LINE_END)
 		            .build();
@@ -148,7 +142,7 @@ public class WikipediaHTMLExtractor {
 			
 			CSVParser parser = new CSVParserBuilder()
 				    .withSeparator(';')
-				    .withIgnoreQuotations(true)
+				    .withIgnoreQuotations(false)
 				    .build();
 			
 			CSVReader csvReader = new CSVReaderBuilder(reader)

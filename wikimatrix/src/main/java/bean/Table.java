@@ -43,7 +43,7 @@ public class Table {
 		
 		if (lines == null) {
 			if (other.lines != null)
-				System.out.println("lines null");
+				// System.out.println("lines null");
 				return false;
 			
 		} else {
