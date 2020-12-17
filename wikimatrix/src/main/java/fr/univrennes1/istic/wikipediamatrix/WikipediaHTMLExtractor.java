@@ -5,25 +5,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.opencsv.CSVParser;
-import com.opencsv.CSVParserBuilder;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.CSVWriter;
-import com.opencsv.CSVWriterBuilder;
-import com.opencsv.ICSVWriter;
-import com.opencsv.RFC4180Parser;
-import com.opencsv.RFC4180ParserBuilder;
 
 import bean.Table;
 
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,54 +35,15 @@ public class WikipediaHTMLExtractor {
 	}
 	
 	
-	public Table getTable(Element table){
-		Table tableau = new Table();
-		try {
-			Elements lines = table.select("tr");
-			// Header 
-			Element firstTr = lines.get(0);
-        	Elements cellulesHeader = firstTr.select("th,td");
-        	List<String> header = new ArrayList<String>();
-        	
-        	for(Element td : cellulesHeader) {
-        		header.add(td.text());
-        	}
-        	
-        	tableau.setHeader(header.toArray(new String[0]));
-        	
-        	// Content
-        	
-        	
-        	for(int i=1; i<lines.size(); i++) {
-        		Element tr = lines.get(i);
-        		
-        		Elements cellules = tr.select("th,td");
-        		List<String> line = new ArrayList<String>();
-        		for (Element td : cellules) {
-        			String text = td.text();
-        			line.add(text);
-                }
-        		tableau.addLine(line.toArray(new String[0]));
-        		
-        	}
-        
-        	return tableau;
-		}
-		catch(Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
-	
 	public Boolean isWikitable(Element table) {
-		if (! table.className().contains("wikitable") ) {
-			return false;
+		if ( table.className().contains("wikitable") ) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public Boolean ContainSpan(Element table) {
-		for(Element td : table.select("td")) {
+		for(Element td : table.select("td,th")) {
 			if (td.hasAttr("colspan") || td.hasAttr("rowspan") )
 				return true;
 		}
@@ -107,77 +55,15 @@ public class WikipediaHTMLExtractor {
 		
 	}
 	
-	
-	public void writeCsvFromTable(Table table, String csvName) {
-		
-		try {
-			Writer writer = Files.newBufferedWriter(Paths.get(outputDirWikitext + csvName));
-			
-			ICSVWriter csvWriter = new CSVWriterBuilder(writer)
-		            .withSeparator(';')
-		            // .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
-		            .withEscapeChar(CSVWriter.DEFAULT_ESCAPE_CHARACTER)
-		            .withLineEnd(CSVWriter.DEFAULT_LINE_END)
-		            .build();
-			
-			csvWriter.writeNext(table.getHeader());
-			csvWriter.writeAll(table.getLines());
-			
-		    csvWriter.close();
-		    writer.close();
-			
-		}
-		catch (IOException ex) {
-		    ex.printStackTrace();
+	public Boolean ContainTable(Element table) {
+		if (table.children().select("table").isEmpty()){
+			return false;
 		}
 		
-		
-
+		return true;
 	}
 	
-	public Table readerCsv(String csvName) throws IOException{
-		
-		Table tableau = new Table();
-		
-		try {
-			Reader reader = Files.newBufferedReader(Paths.get(outputDirWikitext + csvName));
-			
-			// Il y a un problème avec ce parser qui saute les backslashes
-			CSVParser parser = new CSVParserBuilder()
-				    .withSeparator(';')
-				    .withIgnoreQuotations(false)
-				    .build();
-			
-			
-			RFC4180Parser rfc4180Parser = new RFC4180ParserBuilder()
-					.withSeparator(';')
-					.build();
-			
-			CSVReader csvReader = new CSVReaderBuilder(reader)
-				    .withSkipLines(0)
-				    .withCSVParser(rfc4180Parser)
-				    .build();
-			
-			
-			String[] line = csvReader.readNext();
-			tableau.setHeader(line);
-			
-
-			while ((line = csvReader.readNext()) != null) {
-		        tableau.addLine(line);
-		    }
-			
-			return tableau;
-			
-		}
-		catch (IOException ex) {
-		    ex.printStackTrace();
-		    return null;
-		}	
-	}
-
-	
-	private String mkCSVFileName(String url, int n) {
+	public String mkCSVFileName(String url, int n) {
 		return url.trim() + "-" + n + ".csv";
 	}
 	
@@ -188,9 +74,13 @@ public class WikipediaHTMLExtractor {
 		int n = 1;
 		for (int i = 0; i < tables.size(); i++) {
 			Element table = tables.get(i);
-			if (isWikitable(table) && ! ContainSpan(table)) {
-				Table tableau = getTable(table);
-				writeCsvFromTable(tableau, mkCSVFileName(url, n));
+			if (isWikitable(table) && ! ContainSpan(table) && ! ContainTable(table)) {
+				
+				Table tableau = Parser.getTable(table);
+	        	if (tableau.nbColonne() == 1) {
+	        		System.out.println(mkCSVFileName(url, n));
+	        	}
+				Writer.writeCsvFromTable(tableau, mkCSVFileName(url, n),outputDirHtml);
 				n ++;
 				listTable.add(tableau);
 				
@@ -207,26 +97,11 @@ public class WikipediaHTMLExtractor {
 		WikipediaHTMLExtractor wiki = new WikipediaHTMLExtractor(BASE_WIKIPEDIA_URL,
 				outputDirHtml,outputDirWikitext);
 		
-		String url = "Comparison_of_programming_languages_(string_functions)";
+		String url = "Comparison_of_netbooks";
 		
-		// List<Table> listTable = wiki.ExtractUrlToCsv(url);
-	
-		/* Document doc = wiki.getDocument(url);
-		Elements tables = doc.select("table");
+		List<Table> table = wiki.ExtractUrlToCsv(url);
 		
-		Element table = tables.get(5);
 		
-		Table tableau = wiki.getTable(table);
-		
-		System.out.println(tableau);
-		*/
-		
-		Table tableOut = wiki.readerCsv(wiki.mkCSVFileName(url,6));
-		String[] line = tableOut.getLine(6);
-		
-		for (int i=0; i<line.length; i++) {
-			System.out.println(line[i]);
-		}
 	}
 			
 		
