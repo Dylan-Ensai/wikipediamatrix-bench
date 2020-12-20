@@ -1,14 +1,25 @@
-# Wikipedia Matrix (benchmark)
+# Projet Wikipedia Matrix
 
-Extracting Wikipedia tables into CSV files (basic skeleton for testing/benchmarking solutions). Once the git is cloned:
+## Objectif 
+
+Ce programme a pour objectif d'extraire des tableaux issus de page wikipedia. A partir du code HTML des pages wikipdia, on extrait les tableaux pour les sauvegarder au format CSV.
+
+A partir de 300 URLs wikipedia, le challenge est d'extraire le maximum de tableau pertinents.
+
+
+## License
+
+Ce projet est disponible sous license [MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Instalation : 
+
+Une fois le projet cloné vous pouvez lancer les tests/benchmark :
 ```
 cd wikimatrix 
 mvn test
 ``` 
 
-We give 300+ Wikipedia URLs and the challenge is to:
- * integrate the extractors' code (HTML and Wikitext)
- * extract as many relevant tables as possible 
- * serialize the results into CSV files (within `output/html` and `output/wikitext`) 
- 
-More details can be found in `BenchTest.java`. We are expecting to launch `mvn test` and the results will be in `output` folder 
+## Architecture
+
+![diagram](wikiArchi.png)
