@@ -36,7 +36,7 @@
 "ScienceLogic";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"No";"Full Control";"Yes";"Yes";"Python";"MySQL";"Commercial";"Yes";"Yes";"Yes";"Unknown";"Unknown"
 "SevOne";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"No";"Full Control";"Yes";"Yes";"C, C++, PHP";"MySQL";"Commercial";"Yes";"Yes";"Yes";"2018-09";"5.7.2.4[6]"
 "Shinken";"Via plugin";"Yes";"Yes";"No";"Yes";"Yes";"Via plugin";"Via plugin";"Yes";"Yes";"No";"Viewing, Acknowledging, Reporting";"Yes";"Via plugin";"Python";"Flat file, MySQL, Oracle, Graphite, Sqlite, MongoDB";"AGPL";"Yes";"Yes";"Yes";"2016-03-10";"2.4.3"
-"Solarwinds";"Yes";"Yes";"Yes";"Yes";"Yes";"Partial";"Yes";"Yes";"Yes";"Yes";"No";"Full Control";"Yes";"Yes";".NET";"SQL";"Commercial";"Yes";"Yes";"Yes";"Unknown";"Unknown"
+"SolarWinds";"Yes";"Yes";"Yes";"Yes";"Yes";"Partial";"Yes";"Yes";"Yes";"Yes";"No";"Full Control";"Yes";"Yes";".NET";"SQL";"Commercial";"Yes";"Yes";"Yes";"Unknown";"Unknown"
 "Spiceworks";"Unknown";"Yes";"Unknown";"Unknown";"Yes";"Yes";"Unknown";"Unknown";"Yes";"Yes";"Unknown";"Unknown";"Unknown";"Yes";"PHP";"Sqlite";"Unknown";"Yes";"Unknown";"Unknown";"2018-03-21";"7.5.00107"
 "CA Spectrum";"Yes";"Yes";"Perf. AddOn";"Perf. AddOn";"Yes";"No";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"C++, Java, JavaScript";"Sleepycat-QSL, MySQL";"Commercial, per Device";"Yes";"Yes";"Yes";"2020-01-27";"10.4.1"
 "Xymon/Hobbit";"Yes";"Yes";"Yes";"No";"Via plugin";"Via plugin";"Via plugin";"No";"Yes";"Yes";"No";"Viewing, Acknowledging, Reporting";"Yes";"Via plugin";"C, Shell";"Flat file, RRDTool, MySQL via plugin";"GNU GPL";"Via plugin";"Apache ACL";"No";"2017-01-18";"4.3.28"

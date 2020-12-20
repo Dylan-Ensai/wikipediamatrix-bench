@@ -35,4 +35,5 @@
 "Twproject";"Open Lab";"Proprietary, some parts LGPL";"Java";"all relational (uses Hibernate)";"2003";""
 "Wrike";"Wrike, Inc.";"Proprietary, hosted";"Java";"PostgreSQL";"2006";""
 "YouTrack";"JetBrains s.r.o.";"Proprietary, stand-alone and hosted, free version, free for open source projects";"Java";"JavaScript and Kotlin";"2009";""
+"Zammad";"Zammad GmbH";"AGPL";"Ruby";"MySQL, PostgreSQL";"2016[4]"
 "System";"Creator";"License";"Implementation language(s)";"Back end";"Launch date";"Refs"

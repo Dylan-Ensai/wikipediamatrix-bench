@@ -39,7 +39,7 @@ public class BenchTest {
 		String url;
 
 		int nurl = 0;
-
+		int nUrl404 = 0;
 		int nTabKo = 0;
 		List<Table> allTable = new ArrayList<Table>();
 
@@ -65,8 +65,10 @@ public class BenchTest {
 				} catch (Exception e) {
 					logger.info(e.getMessage() + url);
 				}
-			} else
+			} else {
+				nUrl404 ++;
 				logger.warning("Page introuvable");
+			}
 			nurl++;
 		}
 		br.close();
@@ -82,6 +84,7 @@ public class BenchTest {
 		
 		assertEquals(nTabKo, 0);
 		assertEquals(nurl, 336);
+		logger.info("Il y a " + nUrl404 + " URLs injoignables");
 		logger.info("Test validé, 0 tableau KO");
 	}
 

@@ -15,7 +15,7 @@
 "SparkleShare";"C#";"Windows, OS X, Linux, Android, iOS";"GPL v3 and LGPL";"2.0.1 (2017-12-22)";"Yes";"Yes";"No";"";"Yes (Git[26])";"";""
 "SymmetricDS";"Java";"Java SE";"GPL";"3.9.4 (2018-02-16)";"Yes";"Yes";"Yes";"";"No";"Yes";"plug-in APIs for customization"
 "Synchronizer (krusader)";"";"Windows, OS X, Linux";"GPL v2";"2.6.0 (2017-04-12)";"No";"Yes";"No";"";"No";"No";"Synchronizer no longer in active development"
-"Syncthing";"Go";"Windows, OS X, Linux, Android, BSD, Solaris";"MPL v2";"1.10.0 (6 October 2020 (2 months ago) (2020-10-06)[27]) [±]";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Distributed peer-to-peer sync"
+"Syncthing";"Go";"Windows, OS X, Linux, Android, BSD, Solaris";"MPL v2";"1.12.0 (1 December 2020 (19 days ago) (2020-12-01)[27]) [±]";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Distributed peer-to-peer sync"
 "Synkron";"C++";"Windows, OS X, Linux";"GPL v2";"1.6.2 (2011-01-25){[28]}";"Yes";"Yes";"No";"Yes";"Yes";"Yes";"no longer in active development"
 "Unison";"Objective CAML";"Windows, OS X, Linux, Unix flavors";"GPL v3";"2.51.2 (2018-01-27)";"";"Yes";"";"";"";"Yes";""
 "Name";"Programming language";"Platform";"License";"Stable version";"Portable";"Detect conflict";"Renames or moves";"Propagate deletes";"Revision control";"Scheduling or service";"Other information"

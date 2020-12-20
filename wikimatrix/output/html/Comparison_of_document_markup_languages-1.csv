@@ -25,7 +25,7 @@
 "Script GML";"1968 1971";"IBM";"Text editor";"GDDM, AFP viewer"
 "TeX LaTeX";"1978 1984";"Donald Knuth Leslie Lamport";"Text editor";"DVI or Portable Document Format (PDF) converter"
 "Texinfo";"1986";"Richard Stallman";"Text editor";"output to DVI, Portable Document Format (PDF), HTML, DocBook, others."
-"TeXmacs format";"1998";"Joris van der Hoeven";"Text/GNU TeXmacs#The TeXmacs editor";"PDF or PostScript files. Converters exist for TeX/LaTeX and XHTML+Mathml"
+"TeXmacs format";"1998";"Joris van der Hoeven";"Text editor/TeXmacs editor";"PDF or PostScript files. Converters exist for TeX/LaTeX and XHTML+Mathml"
 "Text Encoding Initiative (TEI)";"1990";"Text Encoding Initiative Consortium";"Text/XML editor";"Web Browser (using XHTML), PDF, Word Processor (using ODF) or EPUB"
 "troff (typesetter runoff), groff (GNU runoff)";"1973";"Joe Ossanna";"Text editor";"groffer, or output to PostScript"
 "Wireless Markup Language (WML)";"1999";"WAP Forum";"Text/XML editor";"Microbrowser"

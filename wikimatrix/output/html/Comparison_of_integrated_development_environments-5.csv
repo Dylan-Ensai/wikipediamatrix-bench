@@ -14,7 +14,7 @@
 "Microsoft Visual Studio";"Proprietary, Freeware (Community edition only)";"Yes";"No";"No";"Mac OS 7 (v2.x-v4.x only), Linux[17]";"C++ and C#";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"2019-04";"Yes";"Yes";"Yes (also plugin)[18]"
 "Microsoft Visual Studio Code";"MIT";"Yes";"Yes";"Yes";"";"TypeScript JavaScript CSS";"Yes";"No";"Yes";"No";"No";"Yes";"No";"Yes";"Yes";"2020-09";"External";"External";"Requires language server support[19][20]"
 "MonoDevelop";"LGPL";"Yes";"Yes";"Yes";"FreeBSD, OpenBSD, Solaris";"C#";"Yes";"Yes";"Yes";"No";"No";"Yes";"No";"Yes";"Yes";"2016-11";"Yes (GCC + custom)";"Yes (GCC + custom)";"Yes"
-"NetBeans C/C++ pack";"CDDL and GPL";"Yes";"Yes";"Yes";"OpenBSD, Solaris";"Java";"Yes[21]";"Yes[21]";"Yes[22]";"No[21]";"No";"Yes";"No";"Yes";"Yes";"12.2 (December 7, 2020; 4 days ago (2020-12-07)) [±][23]";"External";"External";"Yes"
+"NetBeans C/C++ pack";"CDDL and GPL";"Yes";"Yes";"Yes";"OpenBSD, Solaris";"Java";"Yes[21]";"Yes[21]";"Yes[22]";"No[21]";"No";"Yes";"No";"Yes";"Yes";"12.2 (December 7, 2020; 10 days ago (2020-12-07)) [±][23]";"External";"External";"Yes"
 "OpenWatcom";"OSI Approved";"Yes (32-bit only)";"partial";"No";"FreeBSD, DOS, OS/2";"C/C++";"Yes (GUI remote)";"Yes";"Yes";"Yes";"No";"No";"No";"Yes";"Yes";"2010-06";"Yes";"Yes";"No"
 "Oracle Solaris Studio (formerly Sun Studio)";"Proprietary, Freeware";"No";"Yes";"No";"Solaris";"?";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"Yes";"2008-11";"Yes";"Yes";"Yes"
 "Qt Creator";"GPL / LGPL / Proprietary";"Yes";"Yes";"Yes";"FreeBSD, Maemo, OpenBSD, Symbian";"C++";"Yes";"Yes";"Yes";"Yes";"No";"Yes";"Yes (clang)";"Yes";"Yes";"2019-06";"External";"External";"Yes[24]"

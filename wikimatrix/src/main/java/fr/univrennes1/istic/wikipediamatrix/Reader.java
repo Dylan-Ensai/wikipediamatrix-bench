@@ -19,12 +19,12 @@ import bean.Table;
 public class Reader {
 
 	static Logger logger = Logger.getLogger("Reader");
-	public static Table readerCsv(String csvName, String outputDirWikitext) throws IOException {
+	public static Table readerCsv(String csvName, String outputDir) throws IOException {
 
 		Table tableau = new Table();
 
 		try {
-			BufferedReader reader = Files.newBufferedReader(Paths.get(outputDirWikitext + csvName));
+			BufferedReader reader = Files.newBufferedReader(Paths.get(outputDir + csvName));
 			  
 			 // Il y a un problème avec ce parser qui saute les backslashes
 			 
